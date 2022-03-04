@@ -30,9 +30,9 @@ public class UserThread extends Thread {
 
             do {
                 protocalString = reader.readLine();
-                if (protocalString.startsWith(name)) {
+                if (protocalString.startsWith("name")) {
                     int i = protocalString.indexOf(" ");
-                    name = protocalString.substring(0, i).replace(" ", "_");
+                    name = protocalString.substring(i + 1).replace(" ", "_");
 
                 } else if (protocalString.startsWith("message")) {
                     int i = protocalString.indexOf(" ");
@@ -56,5 +56,6 @@ public class UserThread extends Thread {
      */
     void sendMessage(String message) {
         writer.print(message);
+        writer.flush();
     }
 }
