@@ -32,7 +32,9 @@ public class ReadThread extends Thread {
             try {
                 String response = reader.readLine();
                 if (response.indexOf("message") > -1) {
-                    System.out.println(response.replace("message", ""));
+                    String tmp = response.replace("message", "");
+                    String[] parts = tmp.split(" ");
+                    System.out.printf("\n [%s]: %s", parts[0], parts[1]);
                 }
  
                 // prints the username after displaying the server's message
