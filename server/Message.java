@@ -16,6 +16,6 @@ public class Message {
     }
 
     public String toString() {
-        return "from " + name + " " + content + "\n";
+        return "message " + name + " " + content + "\n";
     }
 }

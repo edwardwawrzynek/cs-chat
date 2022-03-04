@@ -26,6 +26,24 @@ public class UserThread extends Thread {
             server.sendHistory(this);
 
             // TODO: read messages and handle
+            String protocalString;
+
+            do {
+                protocalString = reader.readLine();
+                if (protocalString.startsWith("name")) {
+                    int i = protocalString.indexOf(" ");
+                    name = protocalString.substring(i + 1).replace(" ", "_");
+
+                } else if (protocalString.startsWith("message")) {
+                    int i = protocalString.indexOf(" ");
+                    Message message = new Message(name, protocalString.substring(i + 1));
+                    server.broadcast(message.toString(), this);
+                    server.addHistory(message);
+                }
+            } while (!protocalString.equals("exit"));
+
+            server.removeUser(this);
+            socket.close();
 
         } catch (IOException ex) {
             System.out.println("Error in UserThread: " + ex.getMessage());
@@ -37,6 +55,7 @@ public class UserThread extends Thread {
      * Sends a message to the client.
      */
     void sendMessage(String message) {
-        writer.println(message);
+        writer.print(message);
+        writer.flush();
     }
 }

@@ -62,6 +62,10 @@ public class ChatServer {
         }
     }
 
+    void addHistory(Message msg) {
+        messages.add(msg);
+    }
+
     /**
      * When a client is disconneted, removes the associated username and UserThread
      */
