@@ -38,13 +38,14 @@ public class WriteThread extends Thread {
  
         do {
             text = console.readLine("[" + userName + "]: ");
-            writer.println("message " + userName + " " + text);
+            writer.println("message " + text);
  
         } while (!text.equals("/EXIT"));
  
         try {
             writer.println("exit");
             socket.close();
+            System.exit(0);
         } catch (IOException ex) {
  
             System.out.println("Error writing to server: " + ex.getMessage());

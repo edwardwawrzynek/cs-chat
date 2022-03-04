@@ -23,9 +23,9 @@ public class UserThread extends Thread {
             writer = new PrintWriter(output, true);
 
             // send all previous messages
-            server.sendHistory(this);
 
-            // TODO: read messages and handle
+            boolean sentHistory = false;
+
             String protocalString;
 
             do {
@@ -39,6 +39,11 @@ public class UserThread extends Thread {
                     Message message = new Message(name, protocalString.substring(i + 1));
                     server.broadcast(message.toString(), this);
                     server.addHistory(message);
+                }
+
+                if(!sentHistory) {
+                    server.sendHistory(this);
+                    sentHistory = true;
                 }
             } while (!protocalString.equals("exit"));
 

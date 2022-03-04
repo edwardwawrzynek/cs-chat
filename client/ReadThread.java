@@ -32,16 +32,18 @@ public class ReadThread extends Thread {
             try {
                 String response = reader.readLine();
                 if (response.indexOf("message") > -1) {
-                    String tmp = response.replace("message", "");
+                    String tmp = response.replace("message ", "");
                     String[] parts = tmp.split(" ");
                     String name = parts[0];
-                    String msg = String.join(" ", Arrays.copyOfRange(parts, 1, parts.length-1));
-                    System.out.printf("\r [%s]: %s", name, msg);
+                    String msg = String.join(" ", Arrays.copyOfRange(parts, 1, parts.length));
+                    System.out.println("\r[" + name + "]: " + msg);
+                    System.out.flush();
                 }
  
                 // prints the username after displaying the server's message
                 if (client.getUserName() != null) {
                     System.out.print("[" + client.getUserName() + "]: ");
+                    System.out.flush();
                 }
             } catch (IOException ex) {
                 System.out.println("Error reading from server: " + ex.getMessage());
