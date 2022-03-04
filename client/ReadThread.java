@@ -1,6 +1,6 @@
 import java.io.*;
 import java.net.*;
- 
+import java.util.Arrays; 
 /**
  * This thread is responsible for reading server's input and printing it
  * to the console.
@@ -34,7 +34,9 @@ public class ReadThread extends Thread {
                 if (response.indexOf("message") > -1) {
                     String tmp = response.replace("message", "");
                     String[] parts = tmp.split(" ");
-                    System.out.printf("\n [%s]: %s", parts[0], parts[1]);
+                    String name = parts[0];
+                    String msg = String.join(" ", Arrays.copyOfRange(parts, 1, parts.length-1));
+                    System.out.printf("\r [%s]: %s", name, msg);
                 }
  
                 // prints the username after displaying the server's message
