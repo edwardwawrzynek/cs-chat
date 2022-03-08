@@ -1,5 +1,6 @@
  import java.io.*;
-import java.net.*;
+ import java.net.*;
+ import java.util.Arrays;
  
 /**
  * This thread is responsible for reading user's input and send it
@@ -39,6 +40,12 @@ public class WriteThread extends Thread {
         do {
             text = console.readLine("[" + userName + "]: ");
             writer.println("message " + text);
+            if (text.indexOf("/DM ") == 0) {
+                String tmp = text.replace("/DM ", "");
+                String[] parts = tmp.split(" ");
+                String msg = String.join(" ", Arrays.copyOfRange(parts, 1, parts.length));
+                writer.println("dm " + parts[0] +" " + msg);
+            }
  
         } while (!text.equals("/EXIT"));
  

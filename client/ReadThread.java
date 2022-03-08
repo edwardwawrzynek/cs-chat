@@ -31,12 +31,21 @@ public class ReadThread extends Thread {
         while (true) {
             try {
                 String response = reader.readLine();
-                if (response.indexOf("message") > -1) {
+                if (response.indexOf("message") == 0) {
                     String tmp = response.replace("message ", "");
                     String[] parts = tmp.split(" ");
                     String name = parts[0];
                     String msg = String.join(" ", Arrays.copyOfRange(parts, 1, parts.length));
                     System.out.println("\r[" + name + "]: " + msg);
+                    System.out.flush();
+                }
+
+                if (response.indexOf("dm") == 0) {
+                    String tmp = response.replace("dm ", "");
+                    String[] parts = tmp.split(" ");
+                    String name = parts[0];
+                    String msg = String.join(" ", Arrays.copyOfRange(parts, 1, parts.length));
+                    System.out.println("\r \033[94m [DM: " + name + "]: \033[0m" + msg);
                     System.out.flush();
                 }
  
