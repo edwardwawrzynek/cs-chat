@@ -39,6 +39,13 @@ public class UserThread extends Thread {
                     Message message = new Message(name, protocalString.substring(i + 1));
                     server.broadcast(message.toString(), this);
                     server.addHistory(message);
+                } else if (protocalString.startsWith("dm")) {
+                    protocalString = protocalString.replace("dm ", "");
+                    int i = protocalString.indexOf(" ");
+                    String name = protocalString.substring(0, i);
+                    String message = protocalString.substring(i+1);
+
+                    
                 }
 
                 if(!sentHistory) {

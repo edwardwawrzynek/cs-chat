@@ -19,6 +19,13 @@ Example:
 message Hello World!
 ```
 
+## `dm NAME MESSAGE`
+Send a direct message to a specific user.
+Example
+```
+dm Freddy-Knight Hello, Freddy Knight
+```
+
 ## `exit`
 Disconnect from the server. When the server receives an `exit` message, it will close the connection.
 
@@ -37,3 +44,6 @@ message Freddy-Knight Hello World!
 ```
 
 The message above means that `Freddy-Knight` has sent `Hello World!`.
+
+## `dm NAME MESSAGE`
+Report that the user `NAME` has sent the client a dm.

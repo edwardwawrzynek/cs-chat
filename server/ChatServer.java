@@ -72,4 +72,8 @@ public class ChatServer {
     void removeUser(UserThread user) {
         users.remove(user);
     }
+
+    Set<UserThread> getUsers() {
+        return users;
+    }
 }
