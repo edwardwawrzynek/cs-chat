@@ -45,7 +45,7 @@ public class ReadThread extends Thread {
                     String[] parts = tmp.split(" ");
                     String name = parts[0];
                     String msg = String.join(" ", Arrays.copyOfRange(parts, 1, parts.length));
-                    System.out.println("\r \033[94m [DM: " + name + "]: \033[0m" + msg);
+                    System.out.println("\r\033[94m[DM: " + name + "]: \033[0m" + msg);
                     System.out.flush();
                 }
  

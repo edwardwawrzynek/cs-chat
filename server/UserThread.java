@@ -14,6 +14,10 @@ public class UserThread extends Thread {
         this.name = "[annonymous]";
     }
 
+    public String getUsername() {
+        return name;
+    }
+
     public void run() {
         try {
             InputStream input = socket.getInputStream();
@@ -42,10 +46,15 @@ public class UserThread extends Thread {
                 } else if (protocalString.startsWith("dm")) {
                     protocalString = protocalString.replace("dm ", "");
                     int i = protocalString.indexOf(" ");
-                    String name = protocalString.substring(0, i);
+                    String targetName = protocalString.substring(0, i);
                     String message = protocalString.substring(i+1);
 
-                    
+                    // find appropriate user
+                    for(UserThread user : server.getUsers()) {
+                        if(user.getUsername().equals(targetName)) {
+                            user.sendMessage("dm " + name + " " + message + "\n");
+                        }
+                    }
                 }
 
                 if(!sentHistory) {
